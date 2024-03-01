@@ -5,15 +5,18 @@ import numpy as np
 import tracemalloc
 import keras
 import os
+from dotenv import load_dotenv
 from PIL import Image
 
+load_dotenv()
 tracemalloc.start()
 
 width = 256
 height = 256
 
 # Gemini API setup
-GOOGLE_API_KEY=os.getenv('API_KEY')
+GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')
+
 
 google_genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -31,7 +34,7 @@ st.title('Image classification (Crops)')
 st.subheader('Overview')
 
 st.markdown('''
-         This **machine learning** project is for detecting crop image of the face in the given image .
+         This **machine learning** project is for detecting crop in the image.
          It is an application of **computer vision** using Tensorflow. 
     ''')
 
@@ -78,13 +81,17 @@ classes = {0: 'Cherry', 1: 'Coffee-plant', 2: 'Cucumber', 3: 'Fox_nut(Makhana)',
                12: 'clove', 13: 'coconut', 14: 'cotton', 15: 'gram', 16: 'jowar', 17: 'jute', 18: 'maize',
                19: 'mustard-oil', 20: 'papaya', 21: 'pineapple', 22: 'rice', 23: 'soyabean', 24: 'sugarcane',
                25: 'sunflower', 26: 'tea', 27: 'tomato', 28: 'vigna-radiati(Mung)', 29: 'wheat'}
+
+prediction = 0
+
 if img_path:
     image_classifier = loadmodel()
+    prediction = predict(img_path)
+    
+    predicted_class = prediction.argmax()
+    certainty = 100 * prediction.max()
 
-prediction = predict(img_path)
 
-predicted_class = prediction.argmax()
-certainty = 100 * prediction.max()
 
 
 if st.button('Classify image'):
@@ -122,7 +129,6 @@ st.write('')
 st.write('')
 
 
-st.markdown("<hr style='border: 1px dashed #ddd; margin: 2rem;'>", unsafe_allow_html=True) #Horizontal line
 
 st.markdown("""
     <div style="text-align: center; padding: 1rem;">
@@ -137,4 +143,4 @@ st.markdown("""
 """,
 unsafe_allow_html=True)
 
-# Peace Out :)
+# Arigato :)
