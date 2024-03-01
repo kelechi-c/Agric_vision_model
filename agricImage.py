@@ -13,8 +13,7 @@ width = 256
 height = 256
 
 # Gemini API setup
-# GOOGLE_API_KEY=os.getenv('API_KEY')
-GOOGLE_API_KEY='AIzaSyDRkbuyt3ZGehY1wjEDPS9tsft52c0wdIo'
+GOOGLE_API_KEY=os.getenv('API_KEY')
 
 google_genai.configure(api_key=GOOGLE_API_KEY)
 
