@@ -3,7 +3,7 @@ import streamlit as st
 import google.generativeai as google_genai
 import numpy as np
 import tracemalloc
-import keras
+import tensorflow as tf
 import os
 from dotenv import load_dotenv
 from PIL import Image
@@ -45,7 +45,7 @@ pretrained_model_path = 'Inception-V1.h5'
 
 @st.cache_resource
 def loadmodel():
-    image_classifier = keras.models.load_model(pretrained_model_path)
+    image_classifier = tf.keras.models.load_model(pretrained_model_path)
     return image_classifier 
 
 
