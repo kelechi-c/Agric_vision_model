@@ -35,7 +35,7 @@ st.subheader('Overview')
 
 st.markdown('''
          This **machine learning** project is for detecting crop in the image.
-         It is an application of **computer vision** using Tensorflow. 
+         It is an application of **computer vision** utilizing transfer learning and the Google Gemini API. 
     ''')
 
 img_path = st.file_uploader('Please upload an image(Face)', type=['png','jpg', 'jpeg'])
