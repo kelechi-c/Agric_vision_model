@@ -38,6 +38,8 @@ st.markdown('''
          It is an application of **computer vision** utilizing transfer learning and the Google Gemini API. 
     ''')
 
+st.write('')
+
 img_path = st.file_uploader('Please upload an image(Face)', type=['png','jpg', 'jpeg'])
 
 # load trained model
@@ -76,11 +78,36 @@ def gemini_output():
 
     
 
-classes = {0: 'Cherry', 1: 'Coffee-plant', 2: 'Cucumber', 3: 'Fox_nut(Makhana)', 4: 'Lemon', 5: 'Olive-tree',
-               6: 'Pearl_millet(bajra)', 7: 'Tobacco-plant', 8: 'almond', 9: 'banana', 10: 'cardamom', 11: 'chilli',
-               12: 'clove', 13: 'coconut', 14: 'cotton', 15: 'gram', 16: 'jowar', 17: 'jute', 18: 'maize',
-               19: 'mustard-oil', 20: 'papaya', 21: 'pineapple', 22: 'rice', 23: 'soyabean', 24: 'sugarcane',
-               25: 'sunflower', 26: 'tea', 27: 'tomato', 28: 'vigna-radiati(Mung)', 29: 'wheat'}
+classes = {0: 'Cherry',
+           1: 'Coffee-plant', 
+           2: 'Cucumber',
+           3: 'Fox_nut(Makhana)',
+          4: 'Lemon',
+          5: 'Olive-tree',
+          6: 'Pearl_millet(bajra)', 
+          7: 'Tobacco-plant',
+          8: 'almond',
+          9: 'banana', 
+          10: 'cardamom',
+          11: 'chilli',
+          12: 'clove',
+          13: 'coconut',
+          14: 'cotton', 
+          15: 'gram', 
+          16: 'jowar', 
+          17: 'jute', 
+          18: 'maize',
+          19: 'mustard-oil',
+          20: 'papaya',
+          21: 'pineapple', 
+          22: 'rice', 
+          23: 'soyabean', 
+          24: 'sugarcane',
+          25: 'sunflower', 
+          26: 'tea', 
+          27: 'tomato',
+          28: 'vigna-radiati(Mung)', 
+          29: 'wheat'}
 
 prediction = 0
 
@@ -94,22 +121,22 @@ if img_path:
 
 
 
-if st.button('Classify image'):
-    with st.spinner("Classifying..."):
-        st.markdown(f'''
-            <div style="background-color: black; color: white; font-weight: bold; padding: 1rem; border-radius: 10px;">
-            <h4>Results</h4>
-            <img href={img_path}/>
-                  Predicted crop => <span style="font-weight: bold;">{classes[predicted_class]} </span> with <span style="font-weight: bold;">{certainty:.2f}% </span>certainty
-            </div>
-                </p>
-                ''', unsafe_allow_html=True)
-        st.success('Successful')
-        
-gen_button = st.button('Generate Gemini output')
+    if st.button('Classify image'):
+        with st.spinner("Classifying..."):
+            st.markdown(f'''
+                <div style="background-color: black; color: white; font-weight: bold; padding: 1rem; border-radius: 10px;">
+                <h4>Results</h4>
+                <img href={img_path}/>
+                    Predicted crop => <span style="font-weight: bold;">{classes[predicted_class]} </span> with <span style="font-weight: bold;">{certainty:.2f}% </span>certainty
+                </div>
+                    </p>
+                    ''', unsafe_allow_html=True)
+            st.success('Successful')
+            
+    gen_button = st.button('Generate Gemini output')
 
-if gen_button:
-    output = gemini_output()
+    if gen_button:
+        output = gemini_output()
 
     st.markdown(f'''
             <div style="background-color: black; color: white; font-weight: bold; padding: 1rem; border-radius: 10px;">
